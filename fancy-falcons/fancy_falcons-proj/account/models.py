@@ -25,9 +25,12 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email, first_name, last_name, passport_id, password):
         user = self.create_user(
             email=self.normalize_email(email),
+            first_name=first_name,
+            last_name=last_name,
+            passport_id=passport_id,
             password=password,
         )
         user.is_admin = True
@@ -45,6 +48,7 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=100)
     passport_id = models.CharField(max_length=15)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    birthday = models.DateField(blank=True, null=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
