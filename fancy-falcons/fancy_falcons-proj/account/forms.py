@@ -24,6 +24,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
+            'earldom',
             'email',
             'image',
         ]

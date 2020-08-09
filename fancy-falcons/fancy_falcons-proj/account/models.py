@@ -43,7 +43,6 @@ class MyAccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
-    username = models.CharField(max_length=50, blank=True)
     title = models.CharField(max_length=20, default='Earl', editable=False)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=100)
@@ -79,10 +78,6 @@ class Account(AbstractBaseUser):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
-
-    def clean(self):
-        # Create username from first and last name
-        self.username = f'{self.first_name}.{self.last_name}'
 
     def has_module_perms(self, app_label):
         return True
