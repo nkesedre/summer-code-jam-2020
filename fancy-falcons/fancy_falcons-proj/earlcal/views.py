@@ -79,4 +79,5 @@ def event(request, event_id=None):
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('earlcal:calendar'))
-    return render(request, 'earlcal/event.html', {'form': form, "event": instance, "active_page": "calendar", "editing": is_editing})
+    return render(request, 'earlcal/event.html', {'form': form, "event": instance,
+                                                  "active_page": "calendar", "editing": is_editing})
