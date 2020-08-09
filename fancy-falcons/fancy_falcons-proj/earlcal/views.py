@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from django.contrib.auth.decorators import login_required
 import calendar
 from .models import Event
 from .utils import Calendar
@@ -52,7 +51,8 @@ def next_month(d):
     last = d.replace(day=days_in_month)
     next_month = last + timedelta(days=1)
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-    return
+    return month
+
 
 def event_view(request, event_id=None):
     instance = Event()
@@ -60,14 +60,13 @@ def event_view(request, event_id=None):
         instance = get_object_or_404(Event, pk=event_id)
     return render(request, 'earlcal/event_display.html', {"active_page": "calendar", 'event': instance})
 
+
 def event(request, event_id=None):
-
     # If the user is not logged in, simple display of event
-    #if not request.user.is_authenticated:
-
+    # if not request.user.is_authenticated:
 
     # If the user is logged in, editable event display
-    #else :
+    # else :
     instance = Event()
     is_editing = False
     if event_id:
