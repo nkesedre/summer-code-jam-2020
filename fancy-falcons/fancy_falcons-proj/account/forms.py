@@ -28,4 +28,3 @@ class UserUpdateForm(forms.ModelForm):
             'email',
             'image',
         ]
-

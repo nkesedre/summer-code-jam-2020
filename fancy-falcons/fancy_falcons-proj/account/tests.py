@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import Account
 
+
 class QuestionModelTests(TestCase):
 
     def all_accounts_hold_earl_title(self):
