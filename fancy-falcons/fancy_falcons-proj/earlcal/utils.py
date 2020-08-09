@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from calendar import HTMLCalendar
-from .models import Event, Account
+from .models import Event
+from account.models import Account
+
 
 class Calendar(HTMLCalendar):
 	def __init__(self, year=None, month=None):
@@ -17,7 +19,7 @@ class Calendar(HTMLCalendar):
 		d = ''
 		for earl in earls_per_day:
 			d += f'<li> {earl.get_html_url} </li>'
-		
+
 		for event in events_per_day:
 			d += f'<li> {event.get_html_url} </li>'
 
