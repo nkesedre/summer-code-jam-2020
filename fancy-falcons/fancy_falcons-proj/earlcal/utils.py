@@ -15,9 +15,9 @@ class Calendar(HTMLCalendar):
         earls_per_day = earls.filter(birthday__day=day)
         events_per_day = events.filter(start_time__day=day)
 
-        d = ''
-        for earl in earls_per_day:
-            d += f'<br><span class="badge badge-success">{earl.get_html_url} </span>'
+		d = ''
+		for earl in earls_per_day:
+			d += f'<br><span class="badge badge-danger">🎂 {earl.get_html_url} </span>'
 
         for event in events_per_day:
             d += f'<br><span class="badge badge-info"> {event.get_html_url} </span>'
