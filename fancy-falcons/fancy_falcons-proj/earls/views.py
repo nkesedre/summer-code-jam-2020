@@ -12,11 +12,6 @@ def earl_list_view(request):
     }
     return render(request, "earls/earllist.html", context)
 
-
-def earl_grid_view(request):
-    queryset = Account.objects.all()
-    context = {
-        "earl_list": queryset,
-        "active_page": "browse",
-    }
-    return render(request, "earls/earlgrid.html", context)
+def earl_public_page(request,pk):
+    earl = Account.objects.get(id = pk)
+    return render(request, 'earls/public_page.html', {'earl': earl})
